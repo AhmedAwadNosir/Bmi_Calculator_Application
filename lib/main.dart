@@ -36,6 +36,23 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     ),
                     height: 210,
                     width: 170,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.male,
+                          size: 90,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "MALE",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -47,6 +64,23 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     ),
                     height: 210,
                     width: 170,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.female,
+                          size: 90,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "FEMALE",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -54,13 +88,48 @@ class _BmiCalculatorState extends State<BmiCalculator> {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: const Color(0xFF313143),
-                ),
-                height: 200,
-                width: 375,
-              ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: const Color(0xFF313143),
+                  ),
+                  height: 200,
+                  width: 375,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "HEIGHT",
+                        style: TextStyle(fontSize: 20, color: Colors.grey),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: const [
+                          Text(
+                            "0",
+                            style: TextStyle(
+                              fontSize: 40,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "cm",
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          )
+                        ],
+                      ),
+                      Slider(
+                        onChanged: (value) {},
+                        value: 0,
+                        min: 0,
+                        max: 300,
+                        divisions: 300,
+                        label: "0",
+                        inactiveColor: Colors.grey,
+                        activeColor: const Color(0xFFE83D66),
+                      ),
+                    ],
+                  )),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -74,6 +143,48 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     ),
                     height: 210,
                     width: 170,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Weight",
+                          style: TextStyle(fontSize: 20, color: Colors.grey),
+                        ),
+                        const Text(
+                          "0",
+                          style: TextStyle(
+                            fontSize: 50,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              onPressed: () {},
+                              backgroundColor:
+                                  const Color.fromARGB(255, 105, 104, 121),
+                              child: const Icon(
+                                Icons.remove,
+                                size: 35,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 27,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {},
+                              backgroundColor:
+                                  const Color.fromARGB(255, 105, 104, 121),
+                              child: const Icon(
+                                Icons.add,
+                                size: 35,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -85,6 +196,48 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     ),
                     height: 210,
                     width: 170,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Age",
+                          style: TextStyle(fontSize: 20, color: Colors.grey),
+                        ),
+                        const Text(
+                          "0",
+                          style: TextStyle(
+                            fontSize: 50,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              onPressed: () {},
+                              backgroundColor:
+                                  const Color.fromARGB(255, 105, 104, 121),
+                              child: const Icon(
+                                Icons.remove,
+                                size: 35,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 27,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {},
+                              backgroundColor:
+                                  const Color.fromARGB(255, 105, 104, 121),
+                              child: const Icon(
+                                Icons.add,
+                                size: 35,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
