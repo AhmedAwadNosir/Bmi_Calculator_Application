@@ -16,6 +16,10 @@ double currentWeightValue = 0;
 double currentAgeValue = 0;
 double Bmi_Calc = 0;
 String last_button_value = "CALCULT";
+double maleIconSize = 90;
+double FemaleIconSize = 90;
+int maleIconColor = 0xFFFFFFFF;
+int femaleIconColor = 0xFFFFFFFF;
 
 class _BmiCalculatorState extends State<BmiCalculator> {
   @override
@@ -44,13 +48,28 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     width: 170,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.male,
-                          size: 90,
-                          color: Colors.white,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (FemaleIconSize == 90) {
+                                maleIconSize = 105;
+                                maleIconColor = 0xFF3399FF;
+                              } else {
+                                FemaleIconSize = 90;
+                                femaleIconColor = 0xFFFFFFFF;
+                                maleIconSize = 105;
+                                maleIconColor = 0xFF3399FF;
+                              }
+                            });
+                          },
+                          child: Icon(
+                            Icons.male,
+                            size: maleIconSize,
+                            color: Color(maleIconColor),
+                          ),
                         ),
-                        Text(
+                        const Text(
                           "MALE",
                           style: TextStyle(
                             fontSize: 20,
@@ -72,13 +91,28 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     width: 170,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.female,
-                          size: 90,
-                          color: Colors.white,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (maleIconSize == 90) {
+                                FemaleIconSize = 105;
+                                femaleIconColor = 0xFFE83D66;
+                              } else {
+                                maleIconSize = 90;
+                                maleIconColor = 0xFFFFFFFF;
+                                FemaleIconSize = 105;
+                                femaleIconColor = 0xFFE83D66;
+                              }
+                            });
+                          },
+                          child: Icon(
+                            Icons.female,
+                            size: FemaleIconSize,
+                            color: Color(femaleIconColor),
+                          ),
                         ),
-                        Text(
+                        const Text(
                           "FEMALE",
                           style: TextStyle(
                             fontSize: 20,
