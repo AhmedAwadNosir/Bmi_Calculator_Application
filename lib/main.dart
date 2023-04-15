@@ -11,6 +11,12 @@ class BmiCalculator extends StatefulWidget {
   State<BmiCalculator> createState() => _BmiCalculatorState();
 }
 
+double currentSliderValue = 0;
+double currentWeightValue = 0;
+double currentAgeValue = 0;
+double Bmi_Calc = 0;
+String last_button_value = "CALCULT";
+
 class _BmiCalculatorState extends State<BmiCalculator> {
   @override
   Widget build(BuildContext context) {
@@ -104,27 +110,31 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const [
+                        children: [
                           Text(
-                            "0",
-                            style: TextStyle(
+                            "${currentSliderValue.toInt()}",
+                            style: const TextStyle(
                               fontSize: 40,
                               color: Colors.white,
                             ),
                           ),
-                          Text(
+                          const Text(
                             "cm",
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           )
                         ],
                       ),
                       Slider(
-                        onChanged: (value) {},
-                        value: 0,
+                        onChanged: (value) {
+                          setState(() {
+                            currentSliderValue = value;
+                          });
+                        },
+                        value: currentSliderValue,
                         min: 0,
                         max: 300,
                         divisions: 300,
-                        label: "0",
+                        label: currentSliderValue.round().toString(),
                         inactiveColor: Colors.grey,
                         activeColor: const Color(0xFFE83D66),
                       ),
@@ -147,12 +157,12 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "Weight",
+                          "weight",
                           style: TextStyle(fontSize: 20, color: Colors.grey),
                         ),
-                        const Text(
-                          "0",
-                          style: TextStyle(
+                        Text(
+                          "${currentWeightValue.round()}",
+                          style: const TextStyle(
                             fontSize: 50,
                             color: Colors.white,
                           ),
@@ -161,7 +171,13 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  if (currentWeightValue > 0) {
+                                    currentWeightValue--;
+                                  }
+                                });
+                              },
                               backgroundColor:
                                   const Color.fromARGB(255, 105, 104, 121),
                               child: const Icon(
@@ -173,7 +189,11 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                               width: 27,
                             ),
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  currentWeightValue++;
+                                });
+                              },
                               backgroundColor:
                                   const Color.fromARGB(255, 105, 104, 121),
                               child: const Icon(
@@ -203,9 +223,9 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                           "Age",
                           style: TextStyle(fontSize: 20, color: Colors.grey),
                         ),
-                        const Text(
-                          "0",
-                          style: TextStyle(
+                        Text(
+                          "${currentAgeValue.round()}",
+                          style: const TextStyle(
                             fontSize: 50,
                             color: Colors.white,
                           ),
@@ -214,7 +234,13 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  if (currentAgeValue > 0) {
+                                    currentAgeValue--;
+                                  }
+                                });
+                              },
                               backgroundColor:
                                   const Color.fromARGB(255, 105, 104, 121),
                               child: const Icon(
@@ -226,7 +252,11 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                               width: 27,
                             ),
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  currentAgeValue++;
+                                });
+                              },
                               backgroundColor:
                                   const Color.fromARGB(255, 105, 104, 121),
                               child: const Icon(
@@ -248,13 +278,22 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      if (currentWeightValue > 0 && currentSliderValue > 0) {
+                        Bmi_Calc = currentWeightValue /
+                            ((currentSliderValue / 100) *
+                                (currentSliderValue / 100));
+                        last_button_value = " ${Bmi_Calc.toStringAsFixed(2)}";
+                      }
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE83D66),
                   ),
-                  child: const Text(
-                    "CALCULAT",
-                    style: TextStyle(
+                  child: Text(
+                    last_button_value,
+                    style: const TextStyle(
                       fontSize: 24,
                     ),
                   ),
