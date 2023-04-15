@@ -314,6 +314,14 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 child: ElevatedButton(
                   onPressed: () {
                     setState(() {
+                      if (maleIconSize == 90 && FemaleIconSize == 90) {
+                        last_button_value = "Pls Choose Your Type";
+                      } else if (currentSliderValue == 0) {
+                        last_button_value = "Pls Enter Your Height";
+                      } else if (currentAgeValue == 0 ||
+                          currentWeightValue == 0) {
+                        last_button_value = "Completer your data, Clic Again ";
+                      }
                       if (currentWeightValue > 0 && currentSliderValue > 0) {
                         Bmi_Calc = currentWeightValue /
                             ((currentSliderValue / 100) *
