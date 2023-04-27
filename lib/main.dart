@@ -1,4 +1,5 @@
 import 'package:bmi_calcultor_git/pagesViews/homeView.dart';
+import 'package:bmi_calcultor_git/pagesViews/resultView.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,10 @@ class _BmiCalculatorState extends State<BmiCalculator> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {HomeView.id: (context) => const HomeView()},
+      routes: {
+        HomeView.id: (context) => const HomeView(),
+        ResultView.id: (context) => const ResultView(),
+      },
       initialRoute: HomeView.id,
     );
   }

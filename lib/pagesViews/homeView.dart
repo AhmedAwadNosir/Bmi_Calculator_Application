@@ -1,9 +1,10 @@
+import 'package:bmi_calcultor_git/pagesViews/resultView.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
-static const id = "HomeView";
+  static const id = "HomeView";
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -12,12 +13,17 @@ static const id = "HomeView";
 double currentSliderValue = 0;
 double currentWeightValue = 0;
 double currentAgeValue = 0;
+String gender = "";
 double Bmi_Calc = 0;
+double LeastHealthyWeightRange = 0;
+double highestHealthyWeightRange = 0;
+String healthSituation = "";
 String last_button_value = "CALCULT";
 double maleIconSize = 90;
 double FemaleIconSize = 90;
 int maleIconColor = 0xFFFFFFFF;
 int femaleIconColor = 0xFFFFFFFF;
+
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
@@ -51,11 +57,13 @@ class _HomeViewState extends State<HomeView> {
                             if (FemaleIconSize == 90) {
                               maleIconSize = 105;
                               maleIconColor = 0xFF3399FF;
+                              gender = "Male";
                             } else {
                               FemaleIconSize = 90;
                               femaleIconColor = 0xFFFFFFFF;
                               maleIconSize = 105;
                               maleIconColor = 0xFF3399FF;
+                              gender = "Male";
                             }
                           });
                         },
@@ -94,11 +102,13 @@ class _HomeViewState extends State<HomeView> {
                             if (maleIconSize == 90) {
                               FemaleIconSize = 105;
                               femaleIconColor = 0xFFE83D66;
+                              gender = "Female";
                             } else {
                               maleIconSize = 90;
                               maleIconColor = 0xFFFFFFFF;
                               FemaleIconSize = 105;
                               femaleIconColor = 0xFFE83D66;
+                              gender = "Female";
                             }
                           });
                         },
@@ -201,6 +211,7 @@ class _HomeViewState extends State<HomeView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FloatingActionButton(
+                            heroTag: "weight--",
                             onPressed: () {
                               setState(() {
                                 if (currentWeightValue > 0) {
@@ -219,6 +230,7 @@ class _HomeViewState extends State<HomeView> {
                             width: 27,
                           ),
                           FloatingActionButton(
+                            heroTag: "weight++",
                             onPressed: () {
                               setState(() {
                                 currentWeightValue++;
@@ -264,6 +276,7 @@ class _HomeViewState extends State<HomeView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FloatingActionButton(
+                            heroTag: "Age--",
                             onPressed: () {
                               setState(() {
                                 if (currentAgeValue > 0) {
@@ -282,6 +295,7 @@ class _HomeViewState extends State<HomeView> {
                             width: 27,
                           ),
                           FloatingActionButton(
+                            heroTag: "Age++",
                             onPressed: () {
                               setState(() {
                                 currentAgeValue++;
@@ -322,7 +336,28 @@ class _HomeViewState extends State<HomeView> {
                       Bmi_Calc = currentWeightValue /
                           ((currentSliderValue / 100) *
                               (currentSliderValue / 100));
-                      last_button_value = " ${Bmi_Calc.toStringAsFixed(2)}";
+                      if (Bmi_Calc < 16) {
+                        healthSituation = "body mass deficit";
+                      } else if (Bmi_Calc >= 16 && Bmi_Calc < 18.5) {
+                        healthSituation = "body weight deficit";
+                      } else if (Bmi_Calc >= 18.5 && Bmi_Calc < 24) {
+                        healthSituation = "Normal(Healthy)";
+                      } else if (Bmi_Calc >= 25 && Bmi_Calc < 30) {
+                        healthSituation = "Over weight";
+                      } else if (Bmi_Calc >= 30 && Bmi_Calc < 35) {
+                        healthSituation = "Obesity first degree";
+                      } else if (Bmi_Calc >= 35 && Bmi_Calc < 40) {
+                        healthSituation = "Obesity Second degree";
+                      } else if (Bmi_Calc >= 40 && Bmi_Calc < 45) {
+                        healthSituation = "Obesity third degree";
+                      }
+                      LeastHealthyWeightRange = ((currentSliderValue / 100) *
+                              (currentSliderValue / 100)) *
+                          18.5;
+                      highestHealthyWeightRange = ((currentSliderValue / 100) *
+                              (currentSliderValue / 100)) *
+                          24.9;
+                      Navigator.pushNamed(context, ResultView.id);
                     }
                   });
                 },
